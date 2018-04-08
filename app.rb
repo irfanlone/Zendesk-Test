@@ -2,6 +2,7 @@
 
 require_relative 'models/user.rb'
 require_relative 'models/ticket.rb'
+require_relative 'models/organization.rb'
 
 def db_configuration
    db_configuration_file = File.join(File.expand_path('..', __FILE__), '.', 'db', 'config.yml')
@@ -14,8 +15,9 @@ end
 
 def looper
   ActiveRecord::Base.establish_connection(db_configuration["development"])
-  u = User.last
-  u.pretty_print
+  o = User.last
+  puts o.organization
+  # u.pretty_print
 end
 
 def search_options

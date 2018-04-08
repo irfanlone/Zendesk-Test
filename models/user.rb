@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :submitted_tickets, foreign_key: :submitter_id, class_name: "Ticket"
   has_many :assigned_tickets, foreign_key: :assignee_id, class_name: "Ticket"
 
+  belongs_to :organization
+
   def pretty_print
     puts "_id\t\t\t\t\t#{_id}"
     puts "name\t\t\t\t\t#{name}"
