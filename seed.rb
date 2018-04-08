@@ -41,5 +41,4 @@ def seed_data
   end
 end
 
-db_configuration
 seed_data
