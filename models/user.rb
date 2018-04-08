@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   belongs_to :organization
 
-  def self.validate_column(column_name)
+  def self.column_searchable?(column_name)
     return true if self.column_names.include?(column_name)
     puts "\n\nInvalid search term ##{column_name} for #{self}. Please view the list of searchable fields.\n\n"
     false
@@ -15,37 +15,4 @@ class User < ActiveRecord::Base
   def self.search(search_term, search_value)
     self.where("#{search_term} = ?", search_value)
   end
-
-  def pretty_print
-    puts "\n=========== User ===========\n"
-    puts "_id\t\t\t\t\t#{_id}"
-    puts "name\t\t\t\t\t#{name}"
-    puts "url\t\t\t\t\t#{url}"
-    puts "external_id\t\t\t\t\t#{external_id}"
-    puts "active\t\t\t\t\t#{active}"
-    puts "verified\t\t\t\t\t#{verified}"
-    puts "shared\t\t\t\t\t#{shared}"
-    puts "locale\t\t\t\t\t#{locale}"
-    puts "timezone\t\t\t\t\t#{timezone}"
-    puts "last_login_at\t\t\t\t\t#{last_login_at}"
-    puts "phone\t\t\t\t\t#{phone}"
-    puts "signature\t\t\t\t\t#{signature}"
-    puts "organization_id\t\t\t\t\t#{organization_id}"
-    puts "tags\t\t\t\t\t#{tags}"
-    puts "suspended\t\t\t\t\t#{suspended}"
-    puts "role\t\t\t\t\t#{role}"
-
-    puts "\n=========== Submitted Tickets ===========\n"
-    puts "No Submitted Tickets"if self.submitted_tickets.count == 0
-    self.submitted_tickets.each_with_index do |ticket, index|
-      puts "Ticket_#{index} \t\t #{ticket.subject}"
-    end
-
-    puts "\n=========== Assigned Tickets ===========\n"
-    puts "No Assigned Tickets"if self.assigned_tickets.count == 0
-    self.assigned_tickets.each_with_index do |ticket, index|
-      puts "Ticket_#{index} \t\t #{ticket.subject}"
-    end
-  end
-
 end
