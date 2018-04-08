@@ -5,22 +5,14 @@ class Ticket < ActiveRecord::Base
   belongs_to :submitter, class_name: "User"
   belongs_to :assignee, class_name: "User"
 
-  def self.validate_column(search_term)
-    return true if self.column_names.include?(search_term)
-    puts "\n\nInvalid search term ##{search_term} for #{self}. Please view the list of searchable fields.\n\n"
+  def self.validate_column(column_name)
+    return true if self.column_names.include?(column_name)
+    puts "\n\nInvalid search term ##{column_name} for #{self}. Please view the list of searchable fields.\n\n"
     false
   end
 
   def self.search(search_term, search_value)
-    tickets = self.where("#{search_term} = ?", search_value)
-    if tickets.count == 0
-      puts "No matches found."
-    else
-      puts "\n#{tickets.count} matches found.\n"
-    end
-    tickets.each do |t|
-      t.pretty_print
-    end
+    self.where("#{search_term} = ?", search_value)
   end
 
   def pretty_print
