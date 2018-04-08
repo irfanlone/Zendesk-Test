@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative 'models/user.rb'
+require_relative 'models/ticket.rb'
 
 def db_configuration
    db_configuration_file = File.join(File.expand_path('..', __FILE__), '.', 'db', 'config.yml')
@@ -14,20 +15,7 @@ end
 def looper
   ActiveRecord::Base.establish_connection(db_configuration["development"])
   u = User.last
-  puts u.pretty_print
-  # prnthelp
-  # search_options
-  # dm = DataManager.new
-
-  # puts DataManager.users.inspect
-  # r = DataManager.users.search('name', 'Rose Newton')
-  # puts r.inspect
-  # puts r.each(&:pretty_print)
-
-  # case gets.chomp.to_s
-  #   when 'quit' then exit
-  # end
-  # search_options
+  u.pretty_print
 end
 
 def search_options

@@ -2,6 +2,9 @@ require 'active_record'
 
 class User < ActiveRecord::Base
 
+  has_many :submitted_tickets, foreign_key: :submitter_id, class_name: "Ticket"
+  has_many :assigned_tickets, foreign_key: :assignee_id, class_name: "Ticket"
+
   def pretty_print
     puts "_id\t\t\t\t\t#{_id}"
     puts "name\t\t\t\t\t#{name}"
@@ -19,27 +22,16 @@ class User < ActiveRecord::Base
     puts "tags\t\t\t\t\t#{tags}"
     puts "suspended\t\t\t\t\t#{suspended}"
     puts "role\t\t\t\t\t#{role}"
+
+    puts "\n *********** Submitted Tickets **************** \n\n"
+    self.submitted_tickets.each_with_index do |ticket, index|
+      puts "Ticket_#{index} \t\t #{ticket.subject}"
+    end
+
+    puts "\n *********** Assigned Tickets **************** \n\n"
+    self.assigned_tickets.each_with_index do |ticket, index|
+      puts "Ticket_#{index} \t\t #{ticket.subject}"
+    end
   end
-
-      # t.string :_id
-      # t.string :url
-      # t.string :external_id
-      # t.string :name
-
-      # t.string :alias
-      # t.boolean :active
-      # t.boolean :verified
-      # t.boolean :shared
-      # t.string :locale
-      # t.string :timezone
-      # t.datetime :last_login_at
-      # t.string :email
-
-      # t.string :phone
-      # t.string :signature
-      # t.integer :organization_id
-      # t.string :tags
-      # t.boolean :suspended
-      # t.string :role
 
 end

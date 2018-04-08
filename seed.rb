@@ -1,5 +1,6 @@
 require 'json'
 require_relative 'models/user'
+require_relative 'models/ticket'
 require 'active_record'
 
 def db_configuration
@@ -10,10 +11,10 @@ end
 def seed_data
   ActiveRecord::Base.establish_connection(db_configuration["development"])
 
-  entity_file = File.read('users.json')
+  entity_file = File.read('tickets.json')
   json_objects = JSON.parse(entity_file)
 
-  json_objects.each { |obj| User.create!(obj) }
+  json_objects.each { |obj| Ticket.create!(obj) }
 end
 
 db_configuration

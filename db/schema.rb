@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408065903) do
+ActiveRecord::Schema.define(version: 20180408090622) do
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "_id"
+    t.string "url"
+    t.string "external_id"
+    t.string "type"
+    t.string "subject"
+    t.string "description"
+    t.string "priority"
+    t.string "status"
+    t.integer "submitter_id"
+    t.integer "assignee_id"
+    t.integer "organization_id"
+    t.string "tags"
+    t.boolean "has_incidents"
+    t.datetime "due_at"
+    t.string "via"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "_id"
