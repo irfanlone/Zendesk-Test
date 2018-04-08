@@ -3,7 +3,8 @@ require 'active_record'
 class Ticket < ActiveRecord::Base
   self.inheritance_column = :foo # Since type is reserved keyword in active-record
 
-  belongs_to :user
+  belongs_to :submitter, class_name: "User"
+  belongs_to :assignee, class_name: "User"
 
   def pretty_print
     puts "_id\t\t\t\t\t#{_id}"

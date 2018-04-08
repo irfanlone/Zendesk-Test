@@ -25,12 +25,12 @@ class User < ActiveRecord::Base
     puts "suspended\t\t\t\t\t#{suspended}"
     puts "role\t\t\t\t\t#{role}"
 
-    puts "\n *********** Submitted Tickets **************** \n\n"
+    puts "\n*********** Submitted Tickets ****************\n\n"
     self.submitted_tickets.each_with_index do |ticket, index|
       puts "Ticket_#{index} \t\t #{ticket.subject}"
     end
 
-    puts "\n *********** Assigned Tickets **************** \n\n"
+    puts "\n*********** Assigned Tickets ****************\n\n"
     self.assigned_tickets.each_with_index do |ticket, index|
       puts "Ticket_#{index} \t\t #{ticket.subject}"
     end
