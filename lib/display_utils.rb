@@ -28,6 +28,10 @@ module DisplayUtils
     puts Organization.column_names
   end
 
+  def display_invalid_search_term(search_term)
+    puts "\n\nInvalid search term ##{search_term}. Please view the list of searchable fields.\n\n"
+  end
+
   private
 
   def display_entity(entity)

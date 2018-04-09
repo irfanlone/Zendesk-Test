@@ -6,9 +6,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :assignee, class_name: "User"
 
   def self.column_searchable?(column_name)
-    return true if self.column_names.include?(column_name)
-    puts "\n\nInvalid search term ##{column_name} for #{self}. Please view the list of searchable fields.\n\n"
-    false
+    self.column_names.include?(column_name)
   end
 
   def self.search(search_term, search_value)
