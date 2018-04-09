@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative 'search.rb'
+require_relative "search.rb"
 
 class App
   include DisplayUtils
@@ -53,7 +53,7 @@ class App
     exit if input.downcase == "q"
 
     if VALID_ENTITIES.has_key?(input.to_i)
-      puts "\nEnter the search term"
+      puts "\nEnter the search term / field"
       search_term = gets.chomp
       puts "Enter the search value"
       search_value = gets.chomp
@@ -73,7 +73,7 @@ class App
   end
 
   def db_configuration
-    db_configuration_file = File.join(File.expand_path('..', __FILE__), '.', 'db', 'config.yml')
+    db_configuration_file = File.join(File.expand_path("..", __FILE__), ".", "db", "config.yml")
     YAML.load(File.read(db_configuration_file))
   end
 end

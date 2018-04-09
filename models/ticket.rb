@@ -14,6 +14,6 @@ class Ticket < ActiveRecord::Base
   def self.search(search_term, search_value)
     return self.search_tags(search_value) if search_term == "tags"
 
-    self.where("#{search_term} = ?", search_value)
+    self.where("lower(#{search_term}) = lower(?)", search_value)
   end
 end

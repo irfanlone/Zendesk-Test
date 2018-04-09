@@ -22,7 +22,7 @@ class Organization < ActiveRecord::Base
     when "domain_names"
       self.search_domains(search_value)
     else
-      self.where("#{search_term} = ?", search_value)
+      self.where("lower(#{search_term}) = lower(?)", search_value)
     end
   end
 end
