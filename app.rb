@@ -14,8 +14,8 @@ class App
 
   def initialize
     welcome_message
-    ActiveRecord::Base.establish_connection(db_configuration["development"])
     @search = Search.new
+    init_db_connection
   end
 
   def start
@@ -58,11 +58,18 @@ class App
       puts "Enter the search value"
       search_value = gets.chomp
 
-      matches = search.run(VALID_ENTITIES[input.to_i], search_term, search_value)
+      matches = search.run(VALID_ENTITIES[input.to_i], search_term.downcase, search_value)
       display_results(matches) unless matches.nil?
     else
       puts "Invalid option."
     end
+  end
+
+  def init_db_connection
+    ActiveRecord::Base.establish_connection(db_configuration["development"])
+  rescue StandardError => e
+    puts "\nError connecting to the database.\n"
+    exit
   end
 
   def db_configuration
